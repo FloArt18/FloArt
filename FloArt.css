@@ -225,14 +225,14 @@ justify-content: center;
 
 @media (max-width: 992px) {
     header h1 {
-        font-size: 5rem;
+        font-size: 5.5rem;
     }
 
     .bio {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
  .bio h2 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
 
     .nav-links a {
@@ -277,14 +277,14 @@ justify-content: center;
 
 @media (max-width: 768px) {
     header h1 {
-        font-size: 4rem;
+        font-size: 5rem;
     }
 
     .bio {
         font-size: 1.2rem;
     }
  .bio h2 {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
     }
 
     .nav-links a {
@@ -298,11 +298,11 @@ justify-content: center;
 
 @media (max-width: 576px) {
     header h1 {
-        font-size: 3rem;
+        font-size: 4.5rem;
     }
 
     .bio {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
  .bio h2 {
         font-size: 1.2rem;
@@ -320,15 +320,15 @@ justify-content: center;
 
 @media (max-width: 480px) {
     header h1 {
-        font-size: 2rem;
+        font-size: 4rem;
     }
 
     .bio {
-        font-size: 0.7rem;
+        font-size: 0.6rem;
     }
 
     .bio h2 {
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
 
     .nav-links a {
