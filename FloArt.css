@@ -232,7 +232,7 @@ justify-content: center;
         font-size: 1.3rem;
     }
  .bio h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .nav-links a {
@@ -284,7 +284,7 @@ justify-content: center;
         font-size: 1.2rem;
     }
  .bio h2 {
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
 
     .nav-links a {
@@ -328,7 +328,7 @@ justify-content: center;
     }
 
     .bio h2 {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
     }
 
     .nav-links a {
@@ -666,7 +666,7 @@ position: relative; /* Adaugă acest rând */
 /* Hide navigation buttons on small screens and adjust image */
 @media (max-width: 768px) {
     .prev, .next {
-        font-size: 16px; /* Smaller font size for navigation buttons */
+        font-size: 10px; /* Smaller font size for navigation buttons */
         padding: 12px; /* Adjust padding for smaller screens */
         margin-top: -18px; /* Adjust margin to account for smaller button size */
     }
@@ -689,12 +689,12 @@ position: relative; /* Adaugă acest rând */
     }
 
     .prev, .next {
-        font-size: 8px; /* Further reduce font size */
+        font-size: 6px; /* Further reduce font size */
         padding: 8px; /* Further adjust padding */
         margin-top: -14px; /* Further adjust margin */
     }
 
    .close {
-      font-size: 20px;
+      font-size: 15px;
     }
 }
