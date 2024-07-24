@@ -7,6 +7,10 @@
     pointer-events: none;
 }
 
+.no-hover .modal, .no-hover .modal-content, .no-hover .close, .no-hover .prev, .no-hover .next {
+    pointer-events: auto;
+}
+
         body, html {
 
 
