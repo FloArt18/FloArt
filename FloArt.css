@@ -663,3 +663,30 @@ position: relative; /* Adaugă acest rând */
     color: #bbb; 
 }
 
+/* Hide navigation buttons on small screens and adjust image */
+@media (max-width: 600px) {
+    .prev, .next {
+        font-size: 16px; /* Smaller font size for navigation buttons */
+        padding: 12px; /* Adjust padding for smaller screens */
+        margin-top: -18px; /* Adjust margin to account for smaller button size */
+    }
+
+    .modal-content-wrapper {
+        max-height: 40%; /* Reduce maximum height to avoid overlapping with buttons */
+        max-width: 95%; /* Increase maximum width to make use of available space */
+    }
+}
+
+/* Adjust modal content on very small screens */
+@media (max-width: 400px) {
+    .modal-content {
+        max-height: 80%; /* Further reduce maximum height */
+
+    }
+
+    .prev, .next {
+        font-size: 14px; /* Further reduce font size */
+        padding: 8px; /* Further adjust padding */
+        margin-top: -14px; /* Further adjust margin */
+    }
+}
