@@ -99,11 +99,13 @@ document.addEventListener('DOMContentLoaded', function () {
             modalImage.src = this.src;
             captionText.innerHTML = this.alt;
             currentIndex = index;
+            document.body.classList.add('no-hover'); // Adaugă clasa pentru a dezactiva hover
         });
     });
 
     closeBtn.addEventListener('click', function () {
         modal.classList.remove('show');
+        document.body.classList.remove('no-hover'); // Elimină clasa pentru a activa hover
     });
 
     prevBtn.addEventListener('click', function () {
@@ -119,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('click', function (event) {
         if (event.target === modal) {
             modal.classList.remove('show');
+            document.body.classList.remove('no-hover'); // Elimină clasa pentru a activa hover
         }
     });
 
@@ -134,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 500); // Match this duration with the CSS animation duration
     }
 });
+
 
 
 
