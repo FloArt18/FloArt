@@ -6,26 +6,30 @@
  /* moveImage.js */
 
  document.addEventListener('DOMContentLoaded', function() {
-            var containers = document.querySelectorAll('.image-container-left, .image-container-center, .image-container-right');
+    var containers = document.querySelectorAll('.image-container-left, .image-container-center, .image-container-right');
 
-            containers.forEach(function(container) {
-                new Sortable(container, {
-                    animation: 150,
-                    ghostClass: 'sortable-ghost',
-                    scroll: true,
-                    scrollSensitivity: 100, // Sensibilitatea derulării
-                    scrollSpeed: 10, // Viteza derulării
-                    onStart: function(evt) {
-                        document.body.classList.add('no-hover');
-                    },
-                    onEnd: function(evt) {
-                        document.body.classList.remove('no-hover');
-                        console.log('Element mutat', evt);
-                    }
-                });
-            });
+    // Detectare dispozitiv mobil
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    containers.forEach(function(container) {
+        new Sortable(container, {
+            animation: 150,
+            ghostClass: 'sortable-ghost',
+            scroll: true,
+            scrollSensitivity: 100,
+            scrollSpeed: 10,
+            // Dezactivează mutarea pe dispozitive mobile
+            filter: isMobile ? '*' : '',
+            onStart: function(evt) {
+                document.body.classList.add('no-hover');
+            },
+            onEnd: function(evt) {
+                document.body.classList.remove('no-hover');
+                console.log('Element mutat', evt);
+            }
         });
-
+    });
+});
 /* scroll top page.js */
 
 // Get the button element
