@@ -3,7 +3,9 @@
 .sortable-ghost {
             opacity: 0.4;
         }
-
+.no-hover * {
+    pointer-events: none;
+}
 
         body, html {
 
