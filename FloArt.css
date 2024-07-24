@@ -526,15 +526,18 @@ position: relative; /* Adaugă acest rând */
     width: 100%;
     height: 100%;
     overflow: auto;
-
     background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Modal Content Image */
 .modal-content {
     margin: auto;
     display: block;
-    max-width: 80%;
+    max-width: 90%;
     max-height: 80%; /* Set max-height to 80% to fit the page */
     animation-name: fadeInZoom;
     animation-duration: 0.8s;
