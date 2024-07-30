@@ -1,65 +1,7 @@
-  /* Afiseaza eticheta imagine */
-
-document.addEventListener("DOMContentLoaded", function() {
-  // Crearea elementului tooltip
-  const tooltip = document.createElement('div');
-  tooltip.className = 'tooltip';
-  document.body.appendChild(tooltip);
-
-  // Funcția pentru a afișa tooltip-ul
-  function showTooltip(event) {
-    const img = event.target;
-    const id = img.getAttribute('data-id');
-    tooltip.textContent = id;
-    const rect = img.getBoundingClientRect();
-    tooltip.style.left = `${rect.left + window.scrollX + 10}px`;
-    tooltip.style.top = `${rect.top + window.scrollY + 10}px`;
-    tooltip.style.display = 'block';
-  }
-
-  // Funcția pentru a ascunde tooltip-ul
-  function hideTooltip() {
-    tooltip.style.display = 'none';
-  }
-
-  // Funcția pentru a mări imaginea și afișa tooltip-ul
-  function changeImageSize(event) {
-    const img = event.target;
-    const isLarge = img.classList.contains('large');
-    
-    // Redimensionarea imaginii
-    if (isLarge) {
-      img.classList.remove('large');
-      hideTooltip();
-    } else {
-      img.classList.add('large');
-      showTooltip(event); // Afișează tooltip-ul la click
-    }
-  }
-
-  // Adăugarea evenimentelor de hover pentru fiecare imagine
-  const images = document.querySelectorAll('.image-container-left img, .image-container-center img, .image-container-right img');
-  images.forEach(img => {
-    img.addEventListener('mouseover', showTooltip);
-    img.addEventListener('mouseout', hideTooltip);
-    img.addEventListener('click', changeImageSize);
-  });
-
-  // Actualizează poziția tooltip-ului când imaginea este mărită
-  images.forEach(img => {
-    img.addEventListener('mousemove', function(event) {
-      if (img.classList.contains('large')) {
-        showTooltip(event);
-      }
-    });
-  });
-});
-
-
 
  /* moveImage.js */
 
- document.addEventListener('DOMContentLoaded', function() {
+/* document.addEventListener('DOMContentLoaded', function() {
     var containers = document.querySelectorAll('.image-container-left, .image-container-center, .image-container-right');
 
     // Detectare dispozitiv mobil
@@ -106,7 +48,7 @@ function scrollFunction() {
 function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
-}
+} */
 
 
 
