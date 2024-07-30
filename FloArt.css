@@ -713,7 +713,9 @@ position: relative; /* Adaugă acest rând */
   position: relative;
   display: inline-block;
 }
-
+.image-wrapper img {
+  display: block;
+}
 .image-id {
   position: absolute;
   bottom: 5px; /* Ajustează poziția după cum este necesar */
