@@ -22,11 +22,27 @@ document.addEventListener("DOMContentLoaded", function() {
     tooltip.style.display = 'none';
   }
 
+  // Funcția pentru a mări imaginea și afișa tooltip-ul
+  function changeImageSize(event) {
+    const img = event.target;
+    const isLarge = img.classList.contains('large');
+    
+    // Redimensionarea imaginii
+    if (isLarge) {
+      img.classList.remove('large');
+      hideTooltip();
+    } else {
+      img.classList.add('large');
+      showTooltip(event);
+    }
+  }
+
   // Adăugarea evenimentelor de hover pentru fiecare imagine
   const images = document.querySelectorAll('.image-container-left img, .image-container-center img, .image-container-right img');
   images.forEach(img => {
     img.addEventListener('mouseover', showTooltip);
     img.addEventListener('mouseout', hideTooltip);
+    img.addEventListener('click', changeImageSize);
   });
 });
 
