@@ -1,5 +1,34 @@
-  /* changeImageSize.js */
+  /* Afiseaza eticheta imagine */
 
+document.addEventListener("DOMContentLoaded", function() {
+  // Crearea elementului tooltip
+  const tooltip = document.createElement('div');
+  tooltip.className = 'tooltip';
+  document.body.appendChild(tooltip);
+
+  // Funcția pentru a afișa tooltip-ul
+  function showTooltip(event) {
+    const img = event.target;
+    const id = img.getAttribute('data-id');
+    tooltip.textContent = id;
+    const rect = img.getBoundingClientRect();
+    tooltip.style.left = `${rect.left + window.scrollX + 10}px`;
+    tooltip.style.top = `${rect.top + window.scrollY + 10}px`;
+    tooltip.style.display = 'block';
+  }
+
+  // Funcția pentru a ascunde tooltip-ul
+  function hideTooltip() {
+    tooltip.style.display = 'none';
+  }
+
+  // Adăugarea evenimentelor de hover pentru fiecare imagine
+  const images = document.querySelectorAll('.image-container-left img, .image-container-center img, .image-container-right img');
+  images.forEach(img => {
+    img.addEventListener('mouseover', showTooltip);
+    img.addEventListener('mouseout', hideTooltip);
+  });
+});
 
 
 
