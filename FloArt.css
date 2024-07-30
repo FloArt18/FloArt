@@ -725,7 +725,7 @@ position: relative; /* Adaugă acest rând */
   padding: 2px 5px;
   border-radius: 3px;
   font-size: 12px;
-  display: none; /* Ascunde inițial */
+  display: yes; /* Ascunde inițial */
   z-index: 1001; /* Asigură-te că este deasupra imaginii mărite */
 }
 
