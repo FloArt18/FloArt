@@ -716,17 +716,25 @@ position: relative; /* Adaugă acest rând */
 
 .image-id {
   position: absolute;
-  bottom: 5px; /* Ajustați poziția după cum este necesar */
-  left: 5px; /* Ajustați poziția după cum este necesar */
+  bottom: 5px; /* Ajustează poziția după cum este necesar */
+  left: 5px; /* Ajustează poziția după cum este necesar */
   background: rgba(0, 0, 0, 0.7);
   color: #fff;
   padding: 2px 5px;
   border-radius: 3px;
   font-size: 12px;
-  display: none; /* Ascundem inițial */
+  display: none; /* Ascunde inițial */
+  z-index: 1001; /* Asigură-te că este deasupra imaginii mărite */
 }
 
 .image-wrapper:hover .image-id {
-  display: block; /* Afișăm la hover */
+  display: block; /* Afișează la hover */
 }
 
+.image-wrapper img.large {
+  z-index: 1000; /* Asigură-te că este sub ID-ul imaginii */
+}
+
+.image-wrapper:hover img.large ~ .image-id {
+  display: block; /* Asigură afișarea ID-ului când imaginea este mărită */
+}
