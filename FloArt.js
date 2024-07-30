@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
       hideTooltip();
     } else {
       img.classList.add('large');
-      showTooltip(event);
+      showTooltip(event); // Afișează tooltip-ul la click
     }
   }
 
@@ -43,6 +43,15 @@ document.addEventListener("DOMContentLoaded", function() {
     img.addEventListener('mouseover', showTooltip);
     img.addEventListener('mouseout', hideTooltip);
     img.addEventListener('click', changeImageSize);
+  });
+
+  // Actualizează poziția tooltip-ului când imaginea este mărită
+  images.forEach(img => {
+    img.addEventListener('mousemove', function(event) {
+      if (img.classList.contains('large')) {
+        showTooltip(event);
+      }
+    });
   });
 });
 
