@@ -723,8 +723,3 @@ position: relative; /* Adaugă acest rând */
   z-index: 1001; /* Asigurați-vă că tooltip-ul este deasupra imaginii mărite */
 }
 
-img.large {
-  transform: scale(1.5); /* Ajustați factorul de scalare după cum este necesar */
-  z-index: 1000; /* Asigurați-vă că imaginea mărită se află deasupra altor elemente */
-  position: relative; /* Asigurați-vă că transformarea nu afectează poziționarea altor elemente */
-}
