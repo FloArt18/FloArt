@@ -9,7 +9,8 @@
 </head>
 <body>
     <div class="contact-form-container">
-        <form id="contactForm">
+        <form id="contactForm" name="contact" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="contact">
             <h2>Contact Us</h2>
             <div class="input-group">
                 <label for="name">Name</label>
