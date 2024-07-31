@@ -45,6 +45,10 @@ h2 {
     border-radius: 4px;
 }
 
+.input-group input[type="file"] {
+    padding: 0;
+}
+
 button {
     width: 100%;
     padding: 10px;
