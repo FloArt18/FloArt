@@ -1,26 +1,69 @@
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url("image/background.jpg");
+ background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  
+}
 
-    let formMessage = document.getElementById('formMessage');
-    let formData = new FormData(this);
 
-    fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
-    })
-    .then(response => {
-        if (response.ok) {
-            formMessage.style.color = 'green';
-            formMessage.textContent = 'Your message has been sent successfully!';
-            this.reset();
-        } else {
-            formMessage.style.color = 'red';
-            formMessage.textContent = 'There was an error sending your message.';
-        }
-    })
-    .catch(error => {
-        formMessage.style.color = 'red';
-        formMessage.textContent = 'There was an error sending your message.';
-    });
-});
+.contact-form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-group input[type="file"] {
+    padding: 0;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#formMessage {
+    margin-top: 15px;
+    color: red;
+}
