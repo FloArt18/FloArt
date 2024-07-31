@@ -1,8 +1,5 @@
   /* main.css */
 
-
-
-
 .sortable-ghost {
             opacity: 0.4;
         }
@@ -179,6 +176,7 @@ justify-content: center;
             object-fit: contain;
 		max-width: 100%
             transition: transform 0.2s ease;
+
         }
 
 
@@ -344,12 +342,12 @@ justify-content: center;
 
 
 .column-container {
-
-  justify-content: center;
+  max-width: 80%; /* Adjust max-width as necessary */
+  justify-content:space-between;/* Spațiu uniform între coloane */
   display: flex;
   grid-template-columns: repeat(3, 1fr); /* Three equal-width columns */
   padding:2%;
-  gap: 150px; /* Adjust gap size as needed */
+  gap: 10vw; /* Spațiu constant între coloane bazat pe lățimea viewport-ului */
   box-shadow: 0px 0px 10px rgba(0, 0, 0.5, 0.8);
   background-color: rgba(0, 0, 0, 0.1); /* Opacitatea de 0.5 pentru un fundal semi-transparent */
  /*flex-wrap: wrap; */ /* Permite imaginilor să se împacheteze pe linii noi la micșorarea ferestrei */
@@ -368,52 +366,64 @@ justify-content: center;
 
 /*setari conatinar stanga*/
      .image-container-left {
-
-     grid-row: 1;
+   flex: 1; /* Fiecare container ocupă spațiu egal */
+     margin: 0 0.2vw; /* Spațiu pe laterale bazat pe lățimea viewport-ului */
+    width: 100%; /* Asigură că containerul umple lățimea disponibilă */
+    max-width: 100%; /* Restricționează lățimea maximă pentru a se potrivi cu imaginea */
+    height: auto; /* Menține raportul de aspect al imaginii */
+    grid-row: 1;
 
 }
 
 /*setari conatinar centru*/
      .image-container-center {
-  
-     grid-row: 2;
+    flex: 1; /* Fiecare container ocupă spațiu egal */
+    margin: 0 0.2vw; /* Spațiu pe laterale bazat pe lățimea viewport-ului */
+    width: 100%; /* Asigură că containerul umple lățimea disponibilă */
+    max-width: 100%; /* Restricționează lățimea maximă pentru a se potrivi cu imaginea */
+    height: auto; /* Menține raportul de aspect al imaginii */
+    grid-row: 2;
 }
 
 /*setari conatinar dreapta*/
      .image-container-right {
-
-     grid-row: 3;
+  flex: 1; /* Fiecare container ocupă spațiu egal */
+     margin: 0 0.2vw; /* Spațiu pe laterale bazat pe lățimea viewport-ului */
+    width: 100%; /* Asigură că containerul umple lățimea disponibilă */
+    max-width: 100%; /* Restricționează lățimea maximă pentru a se potrivi cu imaginea */
+    height: auto; /* Menține raportul de aspect al imaginii */
+    grid-row: 3;
 }
 
 .image-container-left img  {
-
-    max-width: 300px; /* Adjust max-width as necessary */
+    width: 100%; /* Asigură că imaginea umple containerul */
     height: auto;
     display: block;
     justify-content: center;
     align-items: center;
-     
+     margin-bottom: 0vw; /* Distanța între imagini bazată pe lățimea viewport-ului */
+   
 }
  
      .image-container-center img  {
 
-  
-    max-width: 300px; /* Adjust max-width as necessary */
+    width: 100%; /* Asigură că imaginea umple containerul */
     height: auto;
     display: block;
     justify-content: center;
     align-items: center;
-    
+    margin-bottom: 0vw; /* Distanța între imagini bazată pe lățimea viewport-ului */
 }
+    
 
  .image-container-right img  {
-  
-    max-width: 300px; /* Adjust max-width as necessary */
+    width: 100%; /* Asigură că imaginea umple containerul */
     height: auto;
     display: block;
     justify-content: center;
     align-items: center;
-    
+    margin-bottom: 0vw; /* Distanța între imagini bazată pe lățimea viewport-ului */
+   
 }
 
  .image-container-left img:hover {
@@ -492,10 +502,6 @@ position: relative; /* Adaugă acest rând */
        max-height: 100%; /* Set max-height to 100% to fit the page */
 
    }
-
-
-
-
 
   /* scroll top page.css */
 
@@ -709,34 +715,58 @@ position: relative; /* Adaugă acest rând */
 }
 
  /*afisare id imagine*/
-.image-wrapper {
-  position: relative;
-  display: inline-block;
-}
-.image-wrapper img {
-  display: block;
-}
+
+
+
 .image-id {
-  position: absolute;
-  bottom: 5px; /* Ajustează poziția după cum este necesar */
-  left: 5px; /* Ajustează poziția după cum este necesar */
-  background: rgba(0, 0, 0, 0.7);
-  color: #fff;
-  padding: 2px 5px;
-  border-radius: 3px;
-  font-size: 12px;
-  display: yes; /* Ascunde inițial */
-  z-index: 1001; /* Asigură-te că este deasupra imaginii mărite */
+    position: relative; /* Poziționează ID-ul relativ la containerul său */
+    bottom:10px; /* Aliniază ID-ul la partea de jos a containerului */
+    left: 2px; /* Aliniază ID-ul la partea stângă a containerului */
+    background-color: rgba(0, 0, 0, 0.2); /* Fundal semi-transparent pentru vizibilitate */
+    color: white; /* Culoare textului */
+    padding: 5px; /* Padding pentru a adăuga spațiu în jurul textului */
+    border-radius: 0 0 5px 5px; /* Colțuri rotunjite la partea de jos */
+    font-size: 1rem; /* Dimensiunea fontului */
+    text-align: left; /* Aliniază textul la stânga */
+    width: auto; /* Lățimea automată pentru a se adapta textului */
+ 
 }
 
-.image-wrapper:hover .image-id {
-  display: block; /* Afișează la hover */
-}
+/* Media Query pentru ecrane mai mici */
 
-.image-wrapper img.large {
-  z-index: 1000; /* Asigură-te că este sub ID-ul imaginii */
-}
+@media (max-width: 1200px) {
+    .image-id {
+        font-size: 0.8rem;
+        padding: 3px 5px;
 
-.image-wrapper:hover img.large ~ .image-id {
-  display: block; /* Asigură afișarea ID-ului când imaginea este mărită */
-}
+    }
+
+   } 
+
+@media (max-width: 900px) {
+    .image-id {
+        font-size: 0.6rem;
+        padding: 3px 5px;
+
+    }
+
+   } 
+
+
+@media (max-width: 768px) {
+    .image-id {
+        font-size: 0.4rem;
+        padding: 3px 5px;
+
+    }
+
+   } 
+
+@media (max-width: 400px) {
+    .image-id {
+        font-size: 0.3rem;
+        padding: 3px 5px;
+
+    }
+
+   } 
