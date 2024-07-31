@@ -1,7 +1,12 @@
+  /* changeImageSize.js */
+
+
+
+
 
  /* moveImage.js */
 
-/* document.addEventListener('DOMContentLoaded', function() {
+ document.addEventListener('DOMContentLoaded', function() {
     var containers = document.querySelectorAll('.image-container-left, .image-container-center, .image-container-right');
 
     // Detectare dispozitiv mobil
@@ -25,7 +30,7 @@
             }
         });
     });
-}); */
+});
 /* scroll top page.js */
 
 // Get the button element
@@ -48,7 +53,7 @@ function scrollFunction() {
 function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
-} 
+}
 
 
 
@@ -134,15 +139,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-function changeImageSize(imgElement) {
-    imgElement.classList.toggle('large');
-    var imageId = imgElement.nextElementSibling; // Find the image ID element
-    if (imgElement.classList.contains('large')) {
-        imageId.style.display = 'block'; // Show image ID when image is large
-    } else {
-        imageId.style.display = 'none'; // Hide image ID when image is not large
-    }
-}
 
 
 
