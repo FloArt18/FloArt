@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="contact-form-container">
-        <form id="contactForm" name="contact" method="POST" data-netlify="true">
+        <form id="contactForm" name="contact" method="POST" data-netlify="true" enctype="multipart/form-data">
             <input type="hidden" name="form-name" value="contact">
             <h2>Contact Us</h2>
             <div class="input-group">
@@ -23,6 +23,10 @@
             <div class="input-group">
                 <label for="message">Message</label>
                 <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <div class="input-group">
+                <label for="file">Attachment</label>
+                <input type="file" id="file" name="file">
             </div>
             <button type="submit">Submit</button>
             <p id="formMessage"></p>
