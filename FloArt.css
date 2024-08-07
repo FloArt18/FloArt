@@ -1,5 +1,34 @@
   /* main.css */
 
+.artistic-counter {
+    position: absolute;
+    bottom: 0.6rem; /* schimbat pentru a fi mai proporțional */
+    left: 0.2rem; /* schimbat pentru a fi mai proporțional */
+    background: rgba(255, 255, 255, 0.8);
+    border: 0.1rem solid #b58b56; /* schimbat pentru a fi mai proporțional */
+    padding: 0.4rem 0.8rem; /* schimbat pentru a fi mai proporțional */
+    border-radius: 1rem; /* schimbat pentru a fi mai proporțional */
+    box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.8); /* schimbat pentru a fi mai proporțional */
+    color: #5c3d2e;
+    display: flex;
+    align-items: center;
+    font-size: 1rem; /* textul să fie proporțional */
+}
+
+.counter-title {
+    font-size: 0.8rem; /* schimbat pentru a fi mai proporțional */
+    margin-right: 0.5rem; /* schimbat pentru a fi mai proporțional */
+}
+
+.counter-number {
+    font-size: 1rem; /* schimbat pentru a fi mai proporțional */
+    font-weight: bold;
+}
+
+
+
+
+
 .sortable-ghost {
             opacity: 0.4;
         }
@@ -16,9 +45,6 @@
 }
 
         body, html {
-
-
-		
             
             background-color: #f4e7d3;
             color: #5a4635;
@@ -26,11 +52,15 @@
             padding: 0;
 		background-image: url("image/background1.jpg");
 		background-size: cover; /* Auto maintains aspect ratio */
-		background-repeat:repeat;
-		background-position: space;
+		background-repeat:no-repeat;
+		background-position: center;
+            background-attachment: fixed; /* Fixează imaginea în fundal pentru efect parallax (opțional) */
 
-   
         }
+
+
+
+
         header {
 
  	      font-size: 1.4rem;
@@ -316,7 +346,7 @@ justify-content: center;
     }
 
     .gallery {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 }
 
@@ -337,9 +367,6 @@ justify-content: center;
     .nav-links a {
         font-size: 1.5rem;
     }
-	  .gallery {
-        font-size: 0.8rem;
-    }
 }
 
 
@@ -348,7 +375,6 @@ justify-content: center;
   max-width: 80%; /* Adjust max-width as necessary */
   justify-content:space-between;/* Spațiu uniform între coloane */
   display: flex;
-  grid-template-columns: repeat(3, 1fr); /* Three equal-width columns */
   padding:2%;
   gap: 10vw; /* Spațiu constant între coloane bazat pe lățimea viewport-ului */
   box-shadow: 0px 0px 10px rgba(0, 0, 0.5, 0.8);
@@ -362,9 +388,18 @@ justify-content: center;
     gap: 10%;  /* Adjust spacing for narrower layouts */
 
   }
+
+body, html {
+        background-size: cover; /* Se asigură că imaginea acoperă întregul ecran pe dispozitive mai mici */
+    }
+
 }
 
-
+@media (min-width: 769px) {
+    body, html {
+        background-size: cover; /* Se menține acoperirea întregului ecran pentru dispozitive mai mari */
+    }
+}
 
 
 /*setari conatinar stanga*/
@@ -559,13 +594,13 @@ position: relative; /* Adaugă acest rând */
 
     display: none;
     position: fixed;
-    z-index: 1000;
+    z-index: 9999;
     padding-top: 60px;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
+    width: 100vw; /* Lățimea imaginii să fie 100% din lățimea ferestrei */
+    height: 100vh; /* Înălțimea imaginii să fie 100% din înălțimea ferestrei */
+    overflow: hidden;/* Previne derularea */
 
     background-color: rgba(0, 0, 0, 0.9);
     justify-content: center; /* Center horizontally */
@@ -574,20 +609,37 @@ position: relative; /* Adaugă acest rând */
     flex-direction: column;
    
 }
+.modal.show {
+    display: block;
+}
 
 /* Modal Content Image */
 .modal-content {
     margin: auto;
     display: block;
     object-fit: contain; /* Ensures the image scales correctly while maintaining aspect ratio */
-    max-width: 100%;
-    max-height: 80%; /* Set max-height to 80% to fit the page */
+    width: 80vw; /* Lățimea imaginii să fie 100% din lățimea ferestrei */
+    height: 80vh; /* Înălțimea imaginii să fie 100% din înălțimea ferestrei */
     animation-name: fadeInZoom;
     animation-duration: 0.8s;
     animation-timing-function: ease-in-out;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
     
+}
+
+/* Modal for Fullscreen Image */
+.modal.fullscreen {
+    width: 100vw;
+    height: 100vh;
+}
+
+.modal-content.fullscreen {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    max-height: none;
+    object-fit: contain; /* Ensure the image maintains aspect ratio */
 }
 
 
@@ -645,6 +697,7 @@ position: relative; /* Adaugă acest rând */
     font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
+     z-index:10000;
 }
 
 .close:hover,
@@ -715,6 +768,32 @@ position: relative; /* Adaugă acest rând */
    .close {
       font-size: 10px;
     }
+}
+
+
+/* Stil pentru iconița de fullscreen */
+.fullscreen-icon {
+   position: absolute;
+    top: 15px; /* Poziționează iconița de fullscreen la partea de sus */
+    left: 35px; /* Poziționează iconița de fullscreen în partea stângă */
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index:10000;
+}
+
+.fullscreen-icon:hover {
+    color: #ddd;
+cursor: pointer; /* Adăugat pentru a asigura transformarea cursorului */
+
+}
+
+/* Stiluri pentru imaginea fullscreen */
+.modal.fullscreen {
+    width: 100vw;
+    height: 100vh;
 }
 
  /*afisare id imagine*/
