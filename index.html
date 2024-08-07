@@ -171,8 +171,11 @@
     </section>
 
     <footer>
-	  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
         <p>&copy; 2024 Oltei Filip Florentin</p>
+       <div id="visitor-counter" class="artistic-counter">
+            <span class="counter-title">Visitors:</span> <span id="visitor-count" class="counter-number">0</span>
+       </div>
     </footer>
 
 <div id="imageModal" class="modal">
@@ -181,10 +184,12 @@
     <div class="caption" id="caption"></div>
     <a class="prev" id="prev">&#10094;</a>
     <a class="next" id="next">&#10095;</a>
+    <span id="fullscreenToggle" class="fullscreen-icon">&#x26F6;</span> <!-- Iconița de fullscreen -->
 </div>
 
-<script src="FloArt.js"></script>
+ <script src="FloArt.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+ <script src="firebase-config.js"></script>
 
 
 
