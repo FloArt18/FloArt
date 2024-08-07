@@ -2,11 +2,11 @@
 
 .artistic-counter {
     position: absolute;
-    bottom: 0.6rem; /* schimbat pentru a fi mai proporțional */
+    bottom: 0.8rem; /* schimbat pentru a fi mai proporțional */
     left: 0.2rem; /* schimbat pentru a fi mai proporțional */
     background: rgba(255, 255, 255, 0.8);
     border: 0.1rem solid #b58b56; /* schimbat pentru a fi mai proporțional */
-    padding: 0.2rem 0.6rem; /* schimbat pentru a fi mai proporțional */
+    padding: 0.3rem 0.4rem; /* schimbat pentru a fi mai proporțional */
     border-radius: 1rem; /* schimbat pentru a fi mai proporțional */
     box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.8); /* schimbat pentru a fi mai proporțional */
     color: #5c3d2e;
