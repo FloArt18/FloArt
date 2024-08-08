@@ -1,5 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getFirestore, doc, runTransaction, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyB6hZ1oIrGV4r-LqNvycpfnyQDgZzgzhfE",
@@ -12,20 +11,20 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+firebase.initializeApp(firebaseConfig);
+var db = firebase.firestore();
 
+// Funcția de actualizare a contorului
 async function updateVisitorCounter() {
-    const counterRef = doc(db, "counters", "visitorCount");
+    var counterRef = db.collection('counters').doc('visitorCount');
 
     try {
-        await runTransaction(db, async (transaction) => {
-            const docSnapshot = await transaction.get(counterRef);
-            if (!docSnapshot.exists()) {
+        await db.runTransaction(async (transaction) => {
+            const doc = await transaction.get(counterRef);
+            if (!doc.exists) {
                 transaction.set(counterRef, { count: 1 });
             } else {
-                const newCount = docSnapshot.data().count + 1;
-                transaction.update(counterRef, { count: newCount });
+                transaction.update(counterRef, { count: doc.data().count + 1 });
             }
         });
     } catch (error) {
@@ -33,12 +32,13 @@ async function updateVisitorCounter() {
     }
 }
 
-// Funcție pentru a asculta schimbările contorului în Firestore
+// Funcția de ascultare în timp real
 function listenForVisitorCount() {
-    const counterRef = doc(db, "counters", "visitorCount");
-    onSnapshot(counterRef, (docSnapshot) => {
-        if (docSnapshot.exists()) {
-            const count = docSnapshot.data().count;
+    var counterRef = db.collection('counters').doc('visitorCount');
+    
+    counterRef.onSnapshot((doc) => {
+        if (doc.exists) {
+            var count = doc.data().count;
             document.getElementById('visitor-count').textContent = count;
         } else {
             document.getElementById('visitor-count').textContent = '0';
@@ -46,7 +46,6 @@ function listenForVisitorCount() {
     });
 }
 
-// Actualizează contorul la încărcarea paginii
 document.addEventListener('DOMContentLoaded', function () {
     updateVisitorCounter();
     listenForVisitorCount();
