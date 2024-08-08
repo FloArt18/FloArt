@@ -1,6 +1,5 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, onSnapshot, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,20 +16,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export { db };
 // Funcție pentru a actualiza contorul de vizite
 async function updateVisitorCounter() {
-    const counterRef = db.collection('counters').doc('visitorCount');
+    const counterRef = doc(db, 'counters', 'visitorCount');
 
     try {
-        await db.runTransaction(async (transaction) => {
-            const doc = await transaction.get(counterRef);
-            if (!doc.exists) {
+        await runTransaction(db, async (transaction) => {
+            const docSnap = await transaction.get(counterRef);
+            if (!docSnap.exists()) {
                 // Dacă documentul nu există, inițializează-l cu o valoare de 1
                 transaction.set(counterRef, { count: 1 });
             } else {
                 // Dacă documentul există, incrementează valoarea contorului
-                transaction.update(counterRef, { count: doc.data().count + 1 });
+                transaction.update(counterRef, { count: docSnap.data().count + 1 });
             }
         });
     } catch (error) {
@@ -41,27 +39,20 @@ async function updateVisitorCounter() {
 // Actualizează contorul la încărcarea paginii
 updateVisitorCounter();
 
-//actualizare afisare pe pagina
-
-
-document.addEventListener('DOMContentLoaded', function () {
+// Funcție pentru a asculta schimbările contorului în Firestore
+function listenForVisitorCount() {
     const visitorCountElement = document.getElementById('visitor-count');
+    const counterRef = doc(db, 'counters', 'visitorCount');
     
-    // Funcție pentru a asculta schimbările contorului în Firestore
-    function listenForVisitorCount() {
-        const counterRef = db.collection('counters').doc('visitorCount');
-        
-        counterRef.onSnapshot((doc) => {
-            if (doc.exists) {
-                const count = doc.data().count;
-                visitorCountElement.textContent = count;
-            } else {
-                visitorCountElement.textContent = '0';
-            }
-        });
-    }
+    onSnapshot(counterRef, (docSnap) => {
+        if (docSnap.exists()) {
+            const count = docSnap.data().count;
+            visitorCountElement.textContent = count;
+        } else {
+            visitorCountElement.textContent = '0';
+        }
+    });
+}
 
-    // Ascultă schimbările contorului
-    listenForVisitorCount();
-});
-
+// Ascultă schimbările contorului după încărcarea paginii
+document.addEventListener('DOMContentLoaded', listenForVisitorCount);
