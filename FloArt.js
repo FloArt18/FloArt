@@ -142,20 +142,30 @@ document.addEventListener('DOMContentLoaded', function () {
 // Initialize Firestore
 const db = firebase.firestore();
 
-const visitorCountRef = db.collection('visitorCounts').doc('counter');
+import { db } from './firebase-config.js';
 
-visitorCountRef.get().then((doc) => {
-    if (doc.exists) {
-        const visitorCount = doc.data().count + 1;
-        visitorCountRef.update({ count: visitorCount });
-        document.getElementById('visitor-count').innerText = visitorCount;
-    } else {
-        // Create the document if it does not exist
-        visitorCountRef.set({ count: 1 });
-        document.getElementById('visitor-count').innerText = 1;
-    }
-}).catch((error) => {
-    console.error('Error fetching visitor count:', error);
+document.addEventListener('DOMContentLoaded', function() {
+    const visitorCountRef = db.collection('visitorCounts').doc('counter');
+
+    visitorCountRef.get().then((doc) => {
+        if (doc.exists) {
+            const visitorCount = doc.data().count + 1;
+            visitorCountRef.update({ count: visitorCount }).then(() => {
+                document.getElementById('visitor-count').innerText = visitorCount;
+            }).catch((error) => {
+                console.error('Error updating visitor count:', error);
+            });
+        } else {
+            visitorCountRef.set({ count: 1 }).then(() => {
+                document.getElementById('visitor-count').innerText = 1;
+            }).catch((error) => {
+                console.error('Error setting initial visitor count:', error);
+            });
+        }
+    }).catch((error) => {
+        console.error('Error fetching visitor count:', error);
+    });
 });
+
 
 
