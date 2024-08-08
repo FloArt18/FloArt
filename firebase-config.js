@@ -40,3 +40,28 @@ async function updateVisitorCounter() {
 
 // Actualizează contorul la încărcarea paginii
 updateVisitorCounter();
+
+//actualizare afisare pe pagina
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const visitorCountElement = document.getElementById('visitor-count');
+    
+    // Funcție pentru a asculta schimbările contorului în Firestore
+    function listenForVisitorCount() {
+        const counterRef = db.collection('counters').doc('visitorCount');
+        
+        counterRef.onSnapshot((doc) => {
+            if (doc.exists) {
+                const count = doc.data().count;
+                visitorCountElement.textContent = count;
+            } else {
+                visitorCountElement.textContent = '0';
+            }
+        });
+    }
+
+    // Ascultă schimbările contorului
+    listenForVisitorCount();
+});
+
