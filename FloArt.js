@@ -139,33 +139,43 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+
+
+// Initialize Firebase
+// Verifica daca firebase este deja initializat
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app();
+}
+
 // Initialize Firestore
 const db = firebase.firestore();
 
-import { db } from './firebase-config.js';
+// Function to update and display the visitor count
+async function updateVisitorCount() {
+  const counterRef = db.collection('counters').doc('visitorCount');
 
-document.addEventListener('DOMContentLoaded', function() {
-    const visitorCountRef = db.collection('visitorCounts').doc('counter');
+  try {
+    // Get the current visitor count
+    const doc = await counterRef.get();
+    if (doc.exists) {
+      let currentCount = doc.data().count;
+      // Increment the visitor count
+      await counterRef.update({ count: currentCount + 1 });
+      // Update the displayed visitor count
+      document.getElementById('visitor-count').innerText = currentCount + 1;
+    } else {
+      // If the document does not exist, create it with an initial count of 1
+      await counterRef.set({ count: 1 });
+      document.getElementById('visitor-count').innerText = 1;
+    }
+  } catch (error) {
+    console.error("Error updating visitor count: ", error);
+  }
+}
 
-    visitorCountRef.get().then((doc) => {
-        if (doc.exists) {
-            const visitorCount = doc.data().count + 1;
-            visitorCountRef.update({ count: visitorCount }).then(() => {
-                document.getElementById('visitor-count').innerText = visitorCount;
-            }).catch((error) => {
-                console.error('Error updating visitor count:', error);
-            });
-        } else {
-            visitorCountRef.set({ count: 1 }).then(() => {
-                document.getElementById('visitor-count').innerText = 1;
-            }).catch((error) => {
-                console.error('Error setting initial visitor count:', error);
-            });
-        }
-    }).catch((error) => {
-        console.error('Error fetching visitor count:', error);
-    });
-});
-
+// Call the updateVisitorCount function when the page loads
+window.onload = updateVisitorCount;
 
 
