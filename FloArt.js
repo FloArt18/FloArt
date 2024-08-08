@@ -1,32 +1,6 @@
   /* changeImageSize.js */
 
- // Actualizarea contorului
 
-import { db } from './firebase-config.js';
-import { increment, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-async function updateVisitorCount() {
-  const counterRef = doc(db, 'counters', 'visitorCount');
-
-  try {
-    // Increment the visitor count atomically
-    await updateDoc(counterRef, {
-      count: increment(1)
-    });
-
-    // Get the updated count
-    const docSnap = await getDoc(counterRef);
-    if (docSnap.exists()) {
-      const currentCount = docSnap.data().count;
-      document.getElementById('visitor-count').innerText = currentCount;
-    }
-  } catch (error) {
-    console.error("Error updating visitor count: ", error);
-  }
-}
-
-// Call the updateVisitorCount function when the page loads
-window.onload = updateVisitorCount;
 
 
 
