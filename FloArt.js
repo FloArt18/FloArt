@@ -139,36 +139,25 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+ // Actualizarea contorului
 
+import { db } from './firebase-config.js';
+import { increment, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
-// Initialize Firebase
-// Verifica daca firebase este deja initializat
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-} else {
-  firebase.app();
-}
-
-// Initialize Firestore
-const db = firebase.firestore();
-
-// Function to update and display the visitor count
 async function updateVisitorCount() {
-  const counterRef = db.collection('counters').doc('visitorCount');
+  const counterRef = doc(db, 'counters', 'visitorCount');
 
   try {
-    // Get the current visitor count
-    const doc = await counterRef.get();
-    if (doc.exists) {
-      let currentCount = doc.data().count;
-      // Increment the visitor count
-      await counterRef.update({ count: currentCount + 1 });
-      // Update the displayed visitor count
-      document.getElementById('visitor-count').innerText = currentCount + 1;
-    } else {
-      // If the document does not exist, create it with an initial count of 1
-      await counterRef.set({ count: 1 });
-      document.getElementById('visitor-count').innerText = 1;
+    // Increment the visitor count atomically
+    await updateDoc(counterRef, {
+      count: increment(1)
+    });
+
+    // Get the updated count
+    const docSnap = await getDoc(counterRef);
+    if (docSnap.exists()) {
+      const currentCount = docSnap.data().count;
+      document.getElementById('visitor-count').innerText = currentCount;
     }
   } catch (error) {
     console.error("Error updating visitor count: ", error);
@@ -177,5 +166,3 @@ async function updateVisitorCount() {
 
 // Call the updateVisitorCount function when the page loads
 window.onload = updateVisitorCount;
-
-
