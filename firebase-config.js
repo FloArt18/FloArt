@@ -18,3 +18,25 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export { db };
+// Funcție pentru a actualiza contorul de vizite
+async function updateVisitorCounter() {
+    const counterRef = db.collection('counters').doc('visitorCount');
+
+    try {
+        await db.runTransaction(async (transaction) => {
+            const doc = await transaction.get(counterRef);
+            if (!doc.exists) {
+                // Dacă documentul nu există, inițializează-l cu o valoare de 1
+                transaction.set(counterRef, { count: 1 });
+            } else {
+                // Dacă documentul există, incrementează valoarea contorului
+                transaction.update(counterRef, { count: doc.data().count + 1 });
+            }
+        });
+    } catch (error) {
+        console.error("Eroare la actualizarea contorului: ", error);
+    }
+}
+
+// Actualizează contorul la încărcarea paginii
+updateVisitorCounter();
