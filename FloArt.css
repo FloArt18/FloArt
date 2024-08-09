@@ -584,7 +584,7 @@ position: relative; /* Adaugă acest rând */
     height: 100%; 
     overflow: auto; 
     background-color: rgb(0, 0, 0); 
-    background-color: rgba(0, 0, 0, 0.9); 
+    background-color: rgba(0, 0, 0, 0.92); 
     transition: opacity 0.5s ease-in-out;
     opacity: 0;
 }
@@ -629,7 +629,7 @@ position: relative; /* Adaugă acest rând */
     animation-duration: 0.8s;
     animation-timing-function: ease-in-out;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);*/
     
 }
 
