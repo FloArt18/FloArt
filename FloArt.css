@@ -623,8 +623,8 @@ position: relative; /* Adaugă acest rând */
     margin: auto;
     display: block;
     object-fit: contain; /* Ensures the image scales correctly while maintaining aspect ratio */
-    width: 80vw; /* Lățimea imaginii să fie 100% din lățimea ferestrei */
-    height: 80vh; /* Înălțimea imaginii să fie 100% din înălțimea ferestrei */
+    width: 80vw; /* Lățimea imaginii să fie 80% din lățimea ferestrei */
+    height: 80vh; /* Înălțimea imaginii să fie 80% din înălțimea ferestrei */
     animation-name: fadeInZoom;
     animation-duration: 0.8s;
     animation-timing-function: ease-in-out;
