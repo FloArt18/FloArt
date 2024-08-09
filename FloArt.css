@@ -1,5 +1,10 @@
   /* main.css */
 
+@font-face {
+    font-family: 'Chiller';
+    src: url('fonts/Chiller 400.ttf') format('truetype');
+}
+
 .artistic-counter {
     position: absolute;
     bottom: 0.8rem; /* schimbat pentru a fi mai proporțional */
